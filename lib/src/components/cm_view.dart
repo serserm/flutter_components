@@ -20,17 +20,16 @@ class CmView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget current = CmContainer(
+      style: style,
+      children: children,
+    );
+
     return (style?.flex ?? 0) > 0
         ? Flexible(
             flex: style?.flex ?? 0,
-            child: CmContainer(
-              style: style,
-              children: children,
-            ),
+            child: current,
           )
-        : CmContainer(
-            style: style,
-            children: children,
-          );
+        : current;
   }
 }

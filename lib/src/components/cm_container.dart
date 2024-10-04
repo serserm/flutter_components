@@ -105,34 +105,22 @@ class CmContainer extends StatelessWidget {
         gradient: style?.backgroundGradient,
         image: style?.backgroundImage,
       ),
-      child: style?.flexDirection == FlexDirection.row ||
-              style?.flexDirection == FlexDirection.rowReverse
-          ? Row(
-              mainAxisSize:
-                  (style?.flex ?? 0) > 0 ? MainAxisSize.max : MainAxisSize.min,
-              crossAxisAlignment:
-                  style?.alignItems ?? CrossAxisAlignment.stretch,
-              mainAxisAlignment:
-                  style?.justifyContent ?? MainAxisAlignment.start,
-              verticalDirection:
-                  style?.flexDirection == FlexDirection.rowReverse
-                      ? VerticalDirection.up
-                      : VerticalDirection.down,
-              children: children,
-            )
-          : Column(
-              mainAxisSize:
-                  (style?.flex ?? 0) > 0 ? MainAxisSize.max : MainAxisSize.min,
-              crossAxisAlignment:
-                  style?.alignItems ?? CrossAxisAlignment.stretch,
-              mainAxisAlignment:
-                  style?.justifyContent ?? MainAxisAlignment.start,
-              verticalDirection:
-                  style?.flexDirection == FlexDirection.columnReverse
-                      ? VerticalDirection.up
-                      : VerticalDirection.down,
-              children: children,
-            ),
+      child: Flex(
+        mainAxisSize:
+            (style?.flex ?? 0) > 0 ? MainAxisSize.max : MainAxisSize.min,
+        crossAxisAlignment: style?.alignItems ?? CrossAxisAlignment.stretch,
+        mainAxisAlignment: style?.justifyContent ?? MainAxisAlignment.start,
+        verticalDirection:
+            style?.flexDirection == FlexDirection.columnReverse ||
+                    style?.flexDirection == FlexDirection.rowReverse
+                ? VerticalDirection.up
+                : VerticalDirection.down,
+        direction: style?.flexDirection == FlexDirection.row ||
+                style?.flexDirection == FlexDirection.rowReverse
+            ? Axis.horizontal
+            : Axis.vertical,
+        children: children,
+      ),
     );
   }
 }

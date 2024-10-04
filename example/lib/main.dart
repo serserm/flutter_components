@@ -4,10 +4,18 @@ import 'package:flutter_components/flutter_components.dart';
 import 'styles.dart';
 
 void main() {
+  final scaleData = ScaleData(
+    mobile: DeviceSize(
+      baseWidth: 375,
+      baseHeight: 850,
+    ),
+  );
+
   runApp(
-    const MaterialApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyApp(),
+      navigatorKey: scaleData.rootNavigatorKey,
+      home: const MyApp(),
     ),
   );
 }
@@ -27,6 +35,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    ScaleData.update(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const CmText('Title'),
@@ -38,10 +48,10 @@ class _MyAppState extends State<MyApp> {
             child: CmContainer(
               children: [
                 CmView(
-                  style: container,
+                  style: Styles.container,
                   children: [
                     CmView(
-                      style: element,
+                      style: Styles.element,
                       children: const [
                         Text('text'),
                       ],
@@ -49,16 +59,16 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 CmView(
-                  style: container,
+                  style: Styles.container,
                   children: [
                     CmView(
-                      style: element,
+                      style: Styles.element,
                       children: const [
                         Text('text1'),
                       ],
                     ),
                     CmView(
-                      style: element,
+                      style: Styles.element,
                       children: const [
                         Text('text2'),
                       ],
